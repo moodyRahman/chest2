@@ -6,14 +6,16 @@ import {
 } from "react-router-dom";
 import './App.css';
 import Switcher from "./Switch.js"
-import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
+import {UserContext} from "./context/Context.js"
+import { useState } from 'react'
 
 function App() {
+  const [data, setData] = useState("helloooo");
   return (
     <Router>
-      {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
+    <UserContext.Provider value={{data, setData}}>
       <Switcher />
+    </UserContext.Provider>
     </Router>
   );
 }
