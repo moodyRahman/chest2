@@ -9,31 +9,35 @@ import {
 } from "react-router-dom";
 import { UserContext, TabContext } from "./context/Context";
 import {useContext, useState} from "react"
+
 function Nav() {
+
 	const { data, setData } = useContext(UserContext)
 	const {tab, setTab} = useContext(TabContext)
-	const {selectedTab, changeTab} = useState(0)
-	function handleClick(e) {
-		e.preventDefault();
-		const temp = data
-		console.log(data)
-		// setData("globally tested")
-	}
+	
+	
+	const handleChange = (event, newValue) => {
+		setTab(newValue);
+	};
+
+
 
 	return (
-		<TabContext.provider value={0}>
+		// <TabContext.provider value={0}>
+	
 		<AppBar position="static">
-			<Tabs value={4} >
+			<Tabs value={tab} onChange={handleChange}>
 				<Tab index={0} label="Home" to="/" component={Link} />
 				<Tab index={1} label="Character" to="/chars" component={Link} />
 				<Tab index={2} label="Login" to="/login" component={Link} />
 				
-				<Tab index={3} label="globaltest" onClick={handleClick} />
+				<Tab index={3} label="globaltest" onClick={(e)=>{setData("changed")}} />
 				
 				<Tab index={4} label={data}/>
 			</Tabs>
 		</AppBar>
-		</TabContext.provider>
+	
+		// </TabContext.provider>
 	)
 }
 
