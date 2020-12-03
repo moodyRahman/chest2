@@ -7,10 +7,11 @@ import {
 	Route,
 	Link
 } from "react-router-dom";
-import { UserContext } from "./context/Context";
+import { UserContext, TabContext } from "./context/Context";
 import {useContext, useState} from "react"
 function Nav() {
 	const { data, setData } = useContext(UserContext)
+	const {tab, setTab} = useContext(TabContext)
 	const {selectedTab, changeTab} = useState(0)
 	function handleClick(e) {
 		e.preventDefault();
@@ -20,17 +21,19 @@ function Nav() {
 	}
 
 	return (
+		<TabContext.provider value={0}>
 		<AppBar position="static">
-			<Tabs value={0} >
+			<Tabs value={4} >
 				<Tab index={0} label="Home" to="/" component={Link} />
-				<Tab index={0} label="Character" to="/chars" component={Link} />
-				<Tab index={0} label="Login" to="/login" component={Link} />
+				<Tab index={1} label="Character" to="/chars" component={Link} />
+				<Tab index={2} label="Login" to="/login" component={Link} />
 				
-				<Tab label="globaltest" onClick={handleClick} />
+				<Tab index={3} label="globaltest" onClick={handleClick} />
 				
-				<Tab label={data}/>
+				<Tab index={4} label={data}/>
 			</Tabs>
 		</AppBar>
+		</TabContext.provider>
 	)
 }
 
