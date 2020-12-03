@@ -1,4 +1,5 @@
 import { createContext } from 'react'
 
-export const TabContext = createContext("");
-export const UserContext = createContext({});
+
+export const TabContext = createContext();
+export const UserContext = createContext();
