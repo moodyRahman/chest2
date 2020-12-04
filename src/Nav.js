@@ -7,13 +7,13 @@ import {
 	Route,
 	Link
 } from "react-router-dom";
-import { UserContext, TabContext } from "./context/Context";
+import { UserContext} from "./context/Context";
 import {useContext, useState} from "react"
 
 function Nav() {
 
-	const { data, setData } = useContext(UserContext)
-	const {tab, setTab} = useContext(TabContext)
+	const { user, setUser } = useContext(UserContext)
+	const [tab, setTab] = useState(0)
 	
 	
 	const handleChange = (event, newValue) => {
@@ -31,9 +31,9 @@ function Nav() {
 				<Tab index={1} label="Character" to="/chars" component={Link} />
 				<Tab index={2} label="Login" to="/login" component={Link} />
 				
-				<Tab index={3} label="globaltest" onClick={(e)=>{setData("changed")}} />
+				<Tab index={3} label="globaltest" onClick={(e)=>{setUser(user + "a")}} />
 				
-				<Tab index={4} label={data}/>
+				<Tab index={4} label={user}/>
 			</Tabs>
 		</AppBar>
 	

@@ -8,16 +8,15 @@ import './App.css';
 import Switcher from "./Switch.js"
 import {UserContext, TabContext} from "./context/Context.js"
 import { useState } from 'react'
+import Nav from "./Nav";
 
 function App() {
-  const [data, setData] = useState("helloooo");
-  const [tab, setTab] = useState(0)
+  const [user, setUser] = useState("anonymous");
   return (
     <Router>
-    <UserContext.Provider value={{data, setData}}>
-    <TabContext.Provider value={{tab, setTab}}>
+    <UserContext.Provider value={{user, setUser}}>
+      <Nav />
       <Switcher />
-    </TabContext.Provider>
     </UserContext.Provider>
     </Router>
   );
