@@ -1,15 +1,23 @@
 
 import Nav from "../Nav.js"
+import Container from '@material-ui/core/Container';
 import { Button } from "@material-ui/core";
 
 function Home()
 {
 
 	return(
-		<>
-		<Nav />
-		WELCOME TO THE HOME
-		</>
+		<Container maxWidth="xl">
+
+			{/* <Container maxWidth="xl">
+				<Nav />
+			</Container> */}
+
+			<Container>
+				HOME
+			</Container>
+
+		</Container>
 
 	);
 }
