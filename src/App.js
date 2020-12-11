@@ -6,18 +6,21 @@ import {
 } from "react-router-dom";
 import './App.css';
 import Switcher from "./Switch.js"
-import {UserContext, TabContext} from "./context/Context.js"
+import { UserContext, TokenContext } from "./context/Context.js"
 import { useState } from 'react'
 import Nav from "./Nav";
 
 function App() {
-  const [user, setUser] = useState("anonymous");
+  const [user, setUser] = useState("");
+  const [token, setToken] = useState("");
   return (
     <Router>
-    <UserContext.Provider value={{user, setUser}}>
-      <Nav />
-      <Switcher />
-    </UserContext.Provider>
+      <TokenContext.Provider value={{ token, setToken }}>
+        <UserContext.Provider value={{ user, setUser }}>
+          <Nav />
+          <Switcher />
+        </UserContext.Provider>
+      </TokenContext.Provider>
     </Router>
   );
 }
