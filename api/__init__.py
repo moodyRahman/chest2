@@ -48,6 +48,7 @@ def auth():
 	}
 	encoded = jwt.encode(payload, secret_key, algorithm="HS256")
 	return {
+			"user":"moody",
 			"token":encoded,
 			"status":200
 			}
