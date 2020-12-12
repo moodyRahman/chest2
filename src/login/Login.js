@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import Container from '@material-ui/core/Container';
-import Nav from "../Nav.js"
+import { Link, Redirect } from 'react-router-dom';
 import { Button } from '@material-ui/core';
-import { UserContext, TokenContext } from '../context/Context.js';
+import { UserContext, TokenContext, TabContext } from '../context/Context.js';
 
 
 
@@ -11,6 +11,7 @@ export default function Login() {
 
 	const { user, setUser } = useContext(UserContext)
 	const { token, setToken } = useContext(TokenContext)
+	const {tab, setTab} = useContext(TabContext);
 	const [username, setUsername] = useState("")
 	const [password, setPassword] = useState("")
 	const [redirect, setRedirect] = useState("")
@@ -22,7 +23,7 @@ export default function Login() {
 			"password": password
 		}
 
-		fetch("http://moodyrahman.com:5000/auth", {
+		fetch("http://localhost:5000/auth", {
 			method: 'POST', // *GET, POST, PUT, DELETE, etc
 			headers: {
 				'Content-Type': 'application/json'
@@ -31,12 +32,21 @@ export default function Login() {
 		})
 			.then(res => res.json())
 			.then(response => {
-				if (response.status == 200) {
-					console.log(response)
+				console.log(response)
+				if (response.status === 200) {
 					setToken(response.token)
-					setRedirect("/register")
+					setUser(response.user)
+					setTab(0)
+					setRedirect("/")
 				}
 			})
+	}
+
+
+	if (redirect) {
+		return (
+			<Link to="/"></Link>
+		)
 	}
 
 	return (
@@ -47,7 +57,7 @@ export default function Login() {
 				<br></br>
 				<label>Password<input type="password" name="password" id="" onChange={e => setPassword(e.target.value)} /></label>
 
-				<Button type="submit" onClick={console.log("m")}>LOGIN</Button>
+				<Button type="submit" onClick={login}>LOGIN</Button>
 			</Container>
 
 		</Container>
