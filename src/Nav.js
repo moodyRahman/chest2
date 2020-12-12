@@ -1,44 +1,47 @@
 
-import {AppBar, Toolbar, IconButton, Typography, Button, Tab, Tabs} from "@material-ui/core"
+import { AppBar, Tab, Tabs } from "@material-ui/core"
 // import MenuIcon from '@material-ui/icons/Menu';
-import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	Link
-} from "react-router-dom";
-import { UserContext} from "./context/Context";
-import {useContext, useState} from "react"
+import { Link } from "react-router-dom";
+import { TabContext, UserContext } from "./context/Context";
+import { useContext } from "react"
 
 function Nav() {
 
 	const { user, setUser } = useContext(UserContext)
-	const [tab, setTab] = useState(0)
-	
-	
+	const { tab, setTab } = useContext(TabContext)
+
 	const handleChange = (event, newValue) => {
 		setTab(newValue);
 	};
 
-
+	if (!user) {
+		return (
+			<AppBar position="static">
+				<Tabs value={tab} onChange={handleChange}>
+					<Tab index={0} label="Login" to="/login" component={Link} />
+					<Tab index={1} label="Help" to="/help" component={Link} />
+				</Tabs>
+			</AppBar>
+		)
+	}
 
 	return (
-		// <TabContext.provider value={0}>
-	
+
 		<AppBar position="static">
 			<Tabs value={tab} onChange={handleChange}>
 				<Tab index={0} label="Home" to="/" component={Link} />
 				<Tab index={1} label="Character" to="/chars" component={Link} />
-				<Tab index={2} label="Login" to="/login" component={Link} />
-				
-				<Tab index={3} label="globaltest" onClick={(e)=>{setUser(user + "a")}} />
-				
-				<Tab index={4} label={user}/>
+
+				<Tab index={2} label="globaltest" onClick={(e) => { setUser(user + "a") }} />
+
+				<Tab index={3} label={user} />
 			</Tabs>
 		</AppBar>
-	
-		// </TabContext.provider>
 	)
+
+
+
+	// </TabContext.provider>
 }
 
 export default Nav;
