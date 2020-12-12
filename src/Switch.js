@@ -1,8 +1,6 @@
 import {
-	BrowserRouter as Router,
 	Switch,
-	Route,
-	Link
+	Route
 } from "react-router-dom";
 import Home from "./home/Home.js"
 import Chars from "./chars/Chars.js"
