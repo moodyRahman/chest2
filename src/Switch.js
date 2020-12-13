@@ -6,6 +6,7 @@ import Home from "./home/Home.js"
 import Chars from "./chars/Chars.js"
 import Login from "./login/Login.js"
 import Help from "./help/Help.js"
+import Register from "./register/Register.js"
 import {UserContext} from "./context/Context.js"
 import { useContext } from "react";
 
@@ -24,8 +25,12 @@ function Switcher() {
 				<Route path="/login" exact={true}>
 					<Login />
 				</Route>
+
+				<Route path="/register" exact={true}>
+					<Register />
+				</Route>
 				
-				<Route path="/" exact={true}>
+				<Route path="/">
 					<Login />
 				</Route>
 			</Switch>
