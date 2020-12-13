@@ -11,7 +11,7 @@ export default function Login() {
 
 	const { user, setUser } = useContext(UserContext)
 	const { token, setToken } = useContext(TokenContext)
-	const {tab, setTab} = useContext(TabContext);
+	const { tab, setTab } = useContext(TabContext);
 	const [username, setUsername] = useState("")
 	const [password, setPassword] = useState("")
 	const [redirect, setRedirect] = useState("")
@@ -53,11 +53,14 @@ export default function Login() {
 		<Container maxWidth="xl">
 
 			<Container>
-				<label>Username<input type="text" name="username" id="" onChange={e => setUsername(e.target.value)} /></label>
-				<br></br>
-				<label>Password<input type="password" name="password" id="" onChange={e => setPassword(e.target.value)} /></label>
+				<form>
 
-				<Button type="submit" onClick={login}>LOGIN</Button>
+					<label>Username<input type="text" name="username" id="" onChange={e => setUsername(e.target.value)} /></label>
+					<br></br>
+					<label>Password<input type="password" name="password" id="" onChange={e => setPassword(e.target.value)} /></label>
+
+					<Button type="submit" onClick={login}>LOGIN</Button>
+				</form>
 			</Container>
 
 		</Container>
