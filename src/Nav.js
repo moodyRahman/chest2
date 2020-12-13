@@ -19,7 +19,8 @@ function Nav() {
 			<AppBar position="static">
 				<Tabs value={tab} onChange={handleChange}>
 					<Tab index={0} label="Login" to="/login" component={Link} />
-					<Tab index={1} label="Help" to="/help" component={Link} />
+					<Tab index={1} label="Register" to="/register" component={Link} />
+					<Tab index={2} label="Help" to="/help" component={Link} />
 				</Tabs>
 			</AppBar>
 		)
