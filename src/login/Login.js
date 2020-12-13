@@ -12,9 +12,12 @@ export default function Login() {
 	const { user, setUser } = useContext(UserContext)
 	const { token, setToken } = useContext(TokenContext)
 	const { tab, setTab } = useContext(TabContext);
+
 	const [username, setUsername] = useState("")
 	const [password, setPassword] = useState("")
 	const [redirect, setRedirect] = useState("")
+
+	const [message, setMessage] = useState("")
 
 	const login = (event) => {
 		event.preventDefault();
@@ -58,9 +61,10 @@ export default function Login() {
 					<label>Username<input type="text" name="username" id="" onChange={e => setUsername(e.target.value)} /></label>
 					<br></br>
 					<label>Password<input type="password" name="password" id="" onChange={e => setPassword(e.target.value)} /></label>
-
+					<br></br>
 					<Button type="submit" onClick={login}>LOGIN</Button>
 				</form>
+				{message}
 			</Container>
 
 		</Container>
