@@ -2,6 +2,7 @@
 from functools import wraps
 from flask import *
 from flask_cors import CORS
+from .db import *
 import jwt
 
 
@@ -49,7 +50,7 @@ def auth():
 	encoded = jwt.encode(payload, secret_key, algorithm="HS256")
 	return {
 			"user":"moody",
-			"token":encoded,
+			"token":encoded.decode("utf-8"),
 			"status":200
 			}
 
